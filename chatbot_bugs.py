@@ -26,28 +26,29 @@ def enviar_mensaje(mensaje, modelo='deepseek-chat'):
     except Exception as e:
         return f" Error al llamar la API: {str(e)}"
 
+
 def main():
     st.title("Chatbot con DeepSeek y Streamlit")
 
-
-if 'messages' not in st.session_state:
+    if 'messages' not in st.session_state:
         st.session_state.messages = [
-           {
-            "role": "system",
-            "content": "Eres Bugs Bunny, el famoso personaje animado. Responde con humor, usa frases icónicas como '¿Qué hay de nuevo, viejo?' y mantén una actitud relajada y divert>"
-          }
+            {
+                "role": "system",
+                "content": "Eres Bugs Bunny, el famoso personaje animado. Responde con humor, usa frases icónicas como '¿Qué hay de nuevo, viejo?' y mantén una actitud relajada y divertida."
+            }
         ]
-for message in st.session_state.messages:
-        if message["role"] != "system":  
+
+    for message in st.session_state.messages:
+        if message["role"] != "system":
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
 
-if prompt := st.chat_input("Escribe tu mensaje..."):
-     st.session_state.messages.append({"role": "user", "content": prompt}) 
-    with st.chat_message("user"):
-        st.markdown(prompt)
+    if prompt := st.chat_input("Escribe tu mensaje..."):
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
 
-if prompt.lower() == "salir":
+        if prompt.lower() == "salir":
             respuesta = "¡Hasta luego!"
         else:
             respuesta = enviar_mensaje(prompt)
@@ -59,3 +60,4 @@ if prompt.lower() == "salir":
 
 if __name__ == "__main__":
     main()
+
