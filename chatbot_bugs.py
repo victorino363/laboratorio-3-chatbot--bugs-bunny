@@ -29,10 +29,14 @@ def enviar_mensaje(mensaje, modelo='deepseek-chat'):
 def main():
     st.title("Chatbot con DeepSeek y Streamlit")
 
-    if 'messages' not in st.session_state:
+  if 'messages' not in st.session_state:
         st.session_state.messages = [
-        {"role": "system", "content": "Eres Bugs Bunny, el famoso personaje animado. Responde con humor, usa frases icónicas como '¿Qué hay de nuevo, viejo?' y mantén una actitud rela>
-    ]
+           {
+            "role": "system",
+            "content": """Eres Bugs Bunny, el famoso personaje animado. Responde con humor, usa frases icónicas como '¿Qué hay de nuevo, viejo?' y mantén una actitud relajada y divert>
+          }
+        ]
+
 
 for message in st.session_state.messages:
         if message["role"] != "system":  
