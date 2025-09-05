@@ -45,7 +45,7 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("Escribe tu mensaje..."):
      st.session_state.messages.append({"role": "user", "content": prompt}) 
     with st.chat_message("user"):
-     st.markdown(prompt)
+        st.markdown(prompt)
 
 if prompt.lower() == "salir":
             respuesta = "¡Hasta luego!"
